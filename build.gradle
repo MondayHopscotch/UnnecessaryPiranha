@@ -22,6 +22,7 @@ allprojects {
         box2DLightsVersion = '1.4'
         ashleyVersion = '1.7.0'
         aiVersion = '1.8.0'
+        jumpVersion = '0.1-SNAPSHOT'
     }
 
     repositories {
@@ -63,6 +64,10 @@ project(":core") {
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        compile "com.bitdecay:jump-core:$jumpVersion"
+        compile "com.bitdecay:jump-common:$jumpVersion"
+        compile "com.bitdecay:jump-gdx:$jumpVersion"
+        compile "com.bitdecay:jump-leveleditor:$jumpVersion"
     }
 }
 

@@ -8,13 +8,20 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Array;
 import com.bitdecay.game.control.Xbox360Pad;
 import com.bitdecay.game.objects.PlayerObject;
+import com.bitdecay.jump.BitBody;
 import com.bitdecay.jump.collision.BitWorld;
+import com.bitdecay.jump.control.BitBodyController;
 import com.bitdecay.jump.control.PlayerAction;
+import com.bitdecay.jump.control.PlayerInputController;
 import com.bitdecay.jump.gdx.input.ControllerButtonState;
+import com.bitdecay.jump.gdx.input.ControllerPOVState;
 import com.bitdecay.jump.gdx.input.GDXControls;
 import com.bitdecay.jump.leveleditor.render.LibGDXWorldRenderer;
+
+import java.util.List;
 
 /**
  * Created by MondayHopscotch on 7/19/2016.
@@ -31,8 +38,9 @@ public class GameScreen implements Screen {
 
     BitWorld world = new BitWorld();
     private Controller controller;
-    private GDXControls controls;
+    private GDXControls controls = new GDXControls();
 
+    Array<Controller> connectedControllers;
 
     @Override
     public void show() {
@@ -41,28 +49,51 @@ public class GameScreen implements Screen {
         backgroundImage = new Sprite(backgroundTexture);
 
         PlayerObject ourPlayer = new PlayerObject();
-        world.addBody(ourPlayer.getBody());
+        BitBody playerBody = ourPlayer.getBody();
+        BitBodyController bbController = new PlayerInputController(controls);
+        playerBody.controller = bbController;
+        world.addBody(playerBody);
 
-        for (Controller controller : Controllers.getControllers()) {
-            this.controller = controller;
-            Gdx.app.log("CONTROLLER", controller.getName());
-            controls = new GDXControls();
-            controls.set(PlayerAction.JUMP, new ControllerButtonState(controller, Xbox360Pad.BUTTON_A));
-        }
+        connectedControllers = Controllers.getControllers();
     }
 
     @Override
     public void render(float delta) {
-        if (controller != null) {
+        if (controller == null) {
+            System.out.println("No controller connected. Press Jump to connect");
+            for (Controller cont : connectedControllers) {
+                if (cont.getButton(Xbox360Pad.BUTTON_A)) {
+                    this.controller = cont;
+                    Gdx.app.log("CONTROLLER", controller.getName());
+                    controls.set(PlayerAction.JUMP, new ControllerButtonState(controller, Xbox360Pad.BUTTON_A));
+                    controls.set(PlayerAction.UP, new ControllerPOVState(controller, Xbox360Pad.BUTTON_DPAD_UP));
+                    controls.set(PlayerAction.DOWN, new ControllerPOVState(controller, Xbox360Pad.BUTTON_DPAD_DOWN));
+                    controls.set(PlayerAction.LEFT, new ControllerPOVState(controller, Xbox360Pad.BUTTON_DPAD_LEFT));
+                    controls.set(PlayerAction.RIGHT, new ControllerPOVState(controller, Xbox360Pad.BUTTON_DPAD_RIGHT));
+                    break;
+                }
+            }
+         } else {
             if (controls.isJustPressed(PlayerAction.JUMP)) {
                 System.out.println("Jump is JUST pressed");
             }
             if (controls.isPressed(PlayerAction.JUMP)) {
                 System.out.println("Jump is pressed");
             }
+            if (controls.isPressed(PlayerAction.UP)) {
+                System.out.println("Up is pressed");
+            }
+            if (controls.isPressed(PlayerAction.DOWN)) {
+                System.out.println("Down is pressed");
+            }
+            if (controls.isPressed(PlayerAction.LEFT)) {
+                System.out.println("Left is pressed");
+            }
+            if (controls.isPressed(PlayerAction.RIGHT)) {
+                System.out.println("Right is pressed");
+            }
+            world.step(world.STEP_SIZE);
         }
-        world.step(world.STEP_SIZE);
-
 
         camera.update();
         worldRenderer.render(world, camera);

@@ -1,6 +1,8 @@
 package com.bitdecay.game.objects.component;
 
+import com.bitdecay.jump.BitBody;
 import com.bitdecay.jump.control.ControlMap;
+import com.bitdecay.jump.control.PlayerInputController;
 import com.bitdecay.jump.gdx.input.GDXControls;
 import org.junit.Test;
 
@@ -15,20 +17,28 @@ public class ControllerComponentTest {
     @Test
     public void testConstructor() {
         ControlMap controlMap = new GDXControls();
-        ControllerComponent controls = new ControllerComponent(controlMap);
+        BitBody body = new BitBody();
+        PlayerInputController controller = new PlayerInputController(controlMap);
+        ControllerComponent controls = new ControllerComponent(body, controller);
+        assertTrue(body.controller == controller);
     }
 
     @Test
     public void testEnableDisable() {
         GDXControls map = new GDXControls();
-        ControllerComponent controls = new ControllerComponent(map);
+
+        BitBody body = new BitBody();
+
+        PlayerInputController bodyController = new PlayerInputController(map);
+
+        ControllerComponent controls = new ControllerComponent(body, bodyController);
 
         controls.disable();
 
-        assertFalse("Component disables underlying control map", map.enabled);
+        assertFalse("Component disables underlying control map", map.isEnabled());
 
         controls.enable();
 
-        assertTrue("Component enables underlying control map", map.enabled);
+        assertTrue("Component enables underlying control map", map.isEnabled());
     }
 }

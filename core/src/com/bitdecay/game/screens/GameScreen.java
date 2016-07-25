@@ -48,9 +48,6 @@ public class GameScreen implements Screen {
         backgroundTexture = new Texture(Gdx.files.internal("badlogic.jpg"));
         backgroundImage = new Sprite(backgroundTexture);
 
-        PlayerObject ourPlayer = new PlayerObject();
-        BitBodyController bbController = new PlayerInputController(controls);
-
         connectedControllers = Controllers.getControllers();
     }
 
@@ -67,6 +64,11 @@ public class GameScreen implements Screen {
                     controls.set(PlayerAction.DOWN, new ControllerPOVState(controller, Xbox360Pad.BUTTON_DPAD_DOWN));
                     controls.set(PlayerAction.LEFT, new ControllerPOVState(controller, Xbox360Pad.BUTTON_DPAD_LEFT));
                     controls.set(PlayerAction.RIGHT, new ControllerPOVState(controller, Xbox360Pad.BUTTON_DPAD_RIGHT));
+
+                    PlayerInputController bbController = new PlayerInputController(controls);
+                    PlayerObject ourPlayer = new PlayerObject(bbController);
+                    world.addBody(ourPlayer.physics.body);
+
                     break;
                 }
             }

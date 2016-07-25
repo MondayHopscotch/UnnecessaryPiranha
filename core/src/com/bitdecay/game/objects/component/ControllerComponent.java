@@ -1,22 +1,27 @@
 package com.bitdecay.game.objects.component;
 
-import com.bitdecay.jump.control.ControlMap;
+import com.bitdecay.jump.BitBody;
+import com.bitdecay.jump.control.BitBodyController;
+import com.bitdecay.jump.control.PlayerInputController;
 
 /**
  * Created by MondayHopscotch on 7/24/2016.
  */
 public class ControllerComponent implements BitComponent {
-    public ControlMap controlMap;
+    public BitBody body;
+    public PlayerInputController bodyController;
 
-    public ControllerComponent(ControlMap controlMap) {
-        this.controlMap = controlMap;
+    public ControllerComponent(BitBody body, PlayerInputController bodyController) {
+        this.body = body;
+        this.bodyController = bodyController;
+        body.controller = bodyController;
     }
 
     public void enable() {
-        controlMap.enable();
+        bodyController.controls.enable();
     }
 
     public void disable() {
-        controlMap.disable();
+        bodyController.controls.disable();
     }
 }

@@ -1,0 +1,5 @@
+Basic guidelines for components:
+
+- A component will be a self-contained chunk of functionality.
+- Components can be composed of other components.
+	- A component with dependencies will have them explicitly passed in. This means that all dependencies will be compile-time enforced.

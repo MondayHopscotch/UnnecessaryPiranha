@@ -49,10 +49,7 @@ public class GameScreen implements Screen {
         backgroundImage = new Sprite(backgroundTexture);
 
         PlayerObject ourPlayer = new PlayerObject();
-        BitBody playerBody = ourPlayer.getBody();
         BitBodyController bbController = new PlayerInputController(controls);
-        playerBody.controller = bbController;
-        world.addBody(playerBody);
 
         connectedControllers = Controllers.getControllers();
     }

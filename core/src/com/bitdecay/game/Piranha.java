@@ -6,14 +6,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.bitdecay.game.screens.GameScreen;
+import com.bitdecay.game.screens.TitleScreen;
 
 public class Piranha extends Game {
-    SpriteBatch batch;
-    Texture img;
 
     @Override
     public void create() {
-        this.setScreen(new GameScreen());
+        this.setScreen(new TitleScreen(this));
     }
 
     @Override
@@ -25,7 +24,5 @@ public class Piranha extends Game {
 
     @Override
     public void dispose() {
-        batch.dispose();
-        img.dispose();
     }
 }

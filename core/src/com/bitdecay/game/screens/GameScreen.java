@@ -1,5 +1,6 @@
 package com.bitdecay.game.screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.controllers.Controller;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.bitdecay.game.control.Xbox360Pad;
 import com.bitdecay.game.objects.PlayerObject;
+import com.bitdecay.game.objects.component.ControllerComponent;
 import com.bitdecay.jump.BitBody;
 import com.bitdecay.jump.collision.BitWorld;
 import com.bitdecay.jump.control.BitBodyController;
@@ -28,6 +30,7 @@ import java.util.List;
  */
 public class GameScreen implements Screen {
 
+    Game game;
     Texture backgroundTexture;
     Sprite backgroundImage;
     LibGDXWorldRenderer worldRenderer = new LibGDXWorldRenderer();
@@ -37,73 +40,42 @@ public class GameScreen implements Screen {
     SpriteBatch batch = new SpriteBatch();
 
     BitWorld world = new BitWorld();
-    private Controller controller;
-    private GDXControls controls = new GDXControls();
 
-    Array<Controller> connectedControllers;
+
+    public GameScreen(Game game, Controller controller) {
+        this.game = game;
+
+        GDXControls controls = new GDXControls();
+        controls.set(PlayerAction.JUMP, new ControllerButtonState(controller, Xbox360Pad.BUTTON_A));
+        controls.set(PlayerAction.UP, new ControllerPOVState(controller, Xbox360Pad.BUTTON_DPAD_UP));
+        controls.set(PlayerAction.DOWN, new ControllerPOVState(controller, Xbox360Pad.BUTTON_DPAD_DOWN));
+        controls.set(PlayerAction.LEFT, new ControllerPOVState(controller, Xbox360Pad.BUTTON_DPAD_LEFT));
+        controls.set(PlayerAction.RIGHT, new ControllerPOVState(controller, Xbox360Pad.BUTTON_DPAD_RIGHT));
+
+        PlayerInputController bbController = new PlayerInputController(controls);
+        PlayerObject ourPlayer = new PlayerObject(bbController);
+
+        world.addBody(ourPlayer.physics.body);
+    }
 
     @Override
     public void show() {
         world.setTileSize(32);
         backgroundTexture = new Texture(Gdx.files.internal("badlogic.jpg"));
         backgroundImage = new Sprite(backgroundTexture);
-
-        connectedControllers = Controllers.getControllers();
     }
 
     @Override
     public void render(float delta) {
-        if (controller == null) {
-            System.out.println("No controller connected. Press Jump to connect");
-            for (Controller cont : connectedControllers) {
-                if (cont.getButton(Xbox360Pad.BUTTON_A)) {
-                    this.controller = cont;
-                    Gdx.app.log("CONTROLLER", controller.getName());
-                    controls.set(PlayerAction.JUMP, new ControllerButtonState(controller, Xbox360Pad.BUTTON_A));
-                    controls.set(PlayerAction.UP, new ControllerPOVState(controller, Xbox360Pad.BUTTON_DPAD_UP));
-                    controls.set(PlayerAction.DOWN, new ControllerPOVState(controller, Xbox360Pad.BUTTON_DPAD_DOWN));
-                    controls.set(PlayerAction.LEFT, new ControllerPOVState(controller, Xbox360Pad.BUTTON_DPAD_LEFT));
-                    controls.set(PlayerAction.RIGHT, new ControllerPOVState(controller, Xbox360Pad.BUTTON_DPAD_RIGHT));
-
-                    PlayerInputController bbController = new PlayerInputController(controls);
-                    PlayerObject ourPlayer = new PlayerObject(bbController);
-                    world.addBody(ourPlayer.physics.body);
-
-                    break;
-                }
-            }
-         } else {
-            if (controls.isJustPressed(PlayerAction.JUMP)) {
-                System.out.println("Jump is JUST pressed");
-            }
-            if (controls.isPressed(PlayerAction.JUMP)) {
-                System.out.println("Jump is pressed");
-            }
-            if (controls.isPressed(PlayerAction.UP)) {
-                System.out.println("Up is pressed");
-            }
-            if (controls.isPressed(PlayerAction.DOWN)) {
-                System.out.println("Down is pressed");
-            }
-            if (controls.isPressed(PlayerAction.LEFT)) {
-                System.out.println("Left is pressed");
-            }
-            if (controls.isPressed(PlayerAction.RIGHT)) {
-                System.out.println("Right is pressed");
-            }
-            world.step(world.STEP_SIZE);
-        }
-
+        world.step(world.STEP_SIZE);
         camera.update();
-        worldRenderer.render(world, camera);
+        worldRenderer.render(world,camera);
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
 
-//        batch.draw(backgroundImage, 0, 0);
-
         batch.end();
-    }
+}
 
     @Override
     public void resize(int width, int height) {

@@ -22,6 +22,7 @@ import com.bitdecay.jump.gdx.input.ControllerButtonState;
 import com.bitdecay.jump.gdx.input.ControllerPOVState;
 import com.bitdecay.jump.gdx.input.GDXControls;
 import com.bitdecay.jump.leveleditor.render.LibGDXWorldRenderer;
+import com.bitdecay.jump.leveleditor.utils.LevelUtilities;
 
 import java.util.List;
 
@@ -53,21 +54,26 @@ public class GameScreen implements Screen {
         controls.set(PlayerAction.RIGHT, new ControllerPOVState(controller, Xbox360Pad.BUTTON_DPAD_RIGHT));
 
         PlayerInputController bbController = new PlayerInputController(controls);
-        PlayerObject ourPlayer = new PlayerObject(bbController);
 
+        world.setGravity(0, -900);
+
+        //TODO will be loaded as part of level later
+        world.setTileSize(16);
+        world.setLevel(LevelUtilities.loadLevel("Levels/betaFish.level"));
+
+        PlayerObject ourPlayer = new PlayerObject(bbController);
         world.addBody(ourPlayer.physics.body);
     }
 
     @Override
     public void show() {
-        world.setTileSize(32);
         backgroundTexture = new Texture(Gdx.files.internal("badlogic.jpg"));
         backgroundImage = new Sprite(backgroundTexture);
     }
 
     @Override
     public void render(float delta) {
-        world.step(world.STEP_SIZE);
+        world.step(delta);
         camera.update();
         worldRenderer.render(world,camera);
 

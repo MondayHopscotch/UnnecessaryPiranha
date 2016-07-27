@@ -35,7 +35,7 @@ public class PlayerObject extends GameEntity {
         body.jumperProps.jumpCount = 1;
         body.renderStateWatcher = new JumperRenderStateWatcher();
         body.bodyType = BodyType.DYNAMIC;
-        body.aabb.set(new BitRectangle(0, 0, 16, 32));
+        body.aabb.set(new BitRectangle(64, 64, 16, 32));
         body.userObject = this;
         body.active = true;
 

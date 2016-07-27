@@ -1,0 +1,137 @@
+{
+  "tileSize" : 16,
+  "gridObjects" : [ [ {
+    "rect" : {
+      "xy" : {
+        "x" : -64.0,
+        "y" : 16.0
+      },
+      "width" : 16.0,
+      "height" : 16.0
+    },
+    "uuid" : "0f043758-274c-4bc9-82fd-aa87a22cb29c",
+    "material" : 0,
+    "renderNValue" : 2,
+    "collideNValue" : 2,
+    "oneway" : false
+  } ], [ {
+    "rect" : {
+      "xy" : {
+        "x" : -48.0,
+        "y" : 16.0
+      },
+      "width" : 16.0,
+      "height" : 16.0
+    },
+    "uuid" : "2453bab0-be03-44e1-9a60-16b4286c0f63",
+    "material" : 0,
+    "renderNValue" : 10,
+    "collideNValue" : 10,
+    "oneway" : false
+  } ], [ {
+    "rect" : {
+      "xy" : {
+        "x" : -32.0,
+        "y" : 16.0
+      },
+      "width" : 16.0,
+      "height" : 16.0
+    },
+    "uuid" : "8dbf3dbf-5554-4766-bde3-6cde97dc0f6e",
+    "material" : 0,
+    "renderNValue" : 10,
+    "collideNValue" : 10,
+    "oneway" : false
+  } ], [ {
+    "rect" : {
+      "xy" : {
+        "x" : -16.0,
+        "y" : 16.0
+      },
+      "width" : 16.0,
+      "height" : 16.0
+    },
+    "uuid" : "209d8611-e6c3-4672-aa5b-8d5970b6ef96",
+    "material" : 0,
+    "renderNValue" : 10,
+    "collideNValue" : 10,
+    "oneway" : false
+  } ], [ {
+    "rect" : {
+      "xy" : {
+        "x" : 0.0,
+        "y" : 16.0
+      },
+      "width" : 16.0,
+      "height" : 16.0
+    },
+    "uuid" : "bcdfd975-d48c-4f53-a47b-eb75aa16f22d",
+    "material" : 0,
+    "renderNValue" : 10,
+    "collideNValue" : 10,
+    "oneway" : false
+  } ], [ {
+    "rect" : {
+      "xy" : {
+        "x" : 16.0,
+        "y" : 16.0
+      },
+      "width" : 16.0,
+      "height" : 16.0
+    },
+    "uuid" : "200dfd43-f8fe-4ede-acd1-a7e7cf286d0f",
+    "material" : 0,
+    "renderNValue" : 10,
+    "collideNValue" : 10,
+    "oneway" : false
+  } ], [ {
+    "rect" : {
+      "xy" : {
+        "x" : 32.0,
+        "y" : 16.0
+      },
+      "width" : 16.0,
+      "height" : 16.0
+    },
+    "uuid" : "45f21e13-0e76-41c8-b76b-6cca2319ef64",
+    "material" : 0,
+    "renderNValue" : 10,
+    "collideNValue" : 10,
+    "oneway" : false
+  } ], [ {
+    "rect" : {
+      "xy" : {
+        "x" : 48.0,
+        "y" : 16.0
+      },
+      "width" : 16.0,
+      "height" : 16.0
+    },
+    "uuid" : "68f628ae-7ac7-42b7-8acb-a3cc7f26ec7d",
+    "material" : 0,
+    "renderNValue" : 10,
+    "collideNValue" : 10,
+    "oneway" : false
+  } ], [ {
+    "rect" : {
+      "xy" : {
+        "x" : 64.0,
+        "y" : 16.0
+      },
+      "width" : 16.0,
+      "height" : 16.0
+    },
+    "uuid" : "e45a24f8-cf23-4f52-abae-4b45f71b42b4",
+    "material" : 0,
+    "renderNValue" : 8,
+    "collideNValue" : 8,
+    "oneway" : false
+  } ] ],
+  "otherObjects" : [ "java.util.ArrayList", [ ] ],
+  "triggers" : [ "java.util.ArrayList", [ ] ],
+  "gridOffset" : {
+    "x" : -4,
+    "y" : 1
+  },
+  "theme" : 0
+}

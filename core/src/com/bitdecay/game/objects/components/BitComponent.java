@@ -1,4 +1,4 @@
-package com.bitdecay.game.objects.component;
+package com.bitdecay.game.objects.components;
 
 /**
  * Created by MondayHopscotch on 7/24/2016.

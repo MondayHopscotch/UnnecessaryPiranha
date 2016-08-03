@@ -1,4 +1,4 @@
-package com.bitdecay.game.objects.component;
+package com.bitdecay.game.objects.components;
 
 import org.junit.Test;
 

@@ -1,7 +1,7 @@
 package com.bitdecay.game.objects;
 
-import com.bitdecay.game.objects.component.BitComponent;
-import com.bitdecay.game.objects.component.IUpdate;
+import com.bitdecay.game.objects.components.BitComponent;
+import com.bitdecay.game.objects.interfaces.IUpdate;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;

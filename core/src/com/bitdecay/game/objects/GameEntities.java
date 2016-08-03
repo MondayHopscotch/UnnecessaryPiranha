@@ -1,7 +1,6 @@
 package com.bitdecay.game.objects;
 
-import com.bitdecay.game.objects.component.IUpdate;
-import com.bitdecay.jump.leveleditor.example.game.GameObject;
+import com.bitdecay.game.objects.interfaces.IUpdate;
 
 import java.util.ArrayList;
 import java.util.List;

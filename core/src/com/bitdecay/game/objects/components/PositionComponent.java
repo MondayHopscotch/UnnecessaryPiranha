@@ -1,4 +1,4 @@
-package com.bitdecay.game.objects.component;
+package com.bitdecay.game.objects.components;
 
 /**
  * Tracks an x/y position

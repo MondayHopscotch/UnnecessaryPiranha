@@ -4,18 +4,13 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.controllers.Controller;
-import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.Array;
 import com.bitdecay.game.control.Xbox360Pad;
 import com.bitdecay.game.objects.PlayerObject;
-import com.bitdecay.game.objects.component.ControllerComponent;
-import com.bitdecay.jump.BitBody;
 import com.bitdecay.jump.collision.BitWorld;
-import com.bitdecay.jump.control.BitBodyController;
 import com.bitdecay.jump.control.PlayerAction;
 import com.bitdecay.jump.control.PlayerInputController;
 import com.bitdecay.jump.gdx.input.ControllerButtonState;
@@ -23,8 +18,6 @@ import com.bitdecay.jump.gdx.input.ControllerPOVState;
 import com.bitdecay.jump.gdx.input.GDXControls;
 import com.bitdecay.jump.leveleditor.render.LibGDXWorldRenderer;
 import com.bitdecay.jump.leveleditor.utils.LevelUtilities;
-
-import java.util.List;
 
 /**
  * Created by MondayHopscotch on 7/19/2016.
@@ -57,8 +50,6 @@ public class GameScreen implements Screen {
 
         world.setGravity(0, -900);
 
-        //TODO will be loaded as part of level later
-        world.setTileSize(16);
         world.setLevel(LevelUtilities.loadLevel("Levels/betaFish.level"));
 
         PlayerObject ourPlayer = new PlayerObject(bbController);

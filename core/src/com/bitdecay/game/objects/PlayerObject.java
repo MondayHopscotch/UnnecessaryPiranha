@@ -1,16 +1,12 @@
 package com.bitdecay.game.objects;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.bitdecay.game.objects.component.ControllerComponent;
-import com.bitdecay.game.objects.component.PhysicsComponent;
-import com.bitdecay.game.objects.component.PositionComponent;
-import com.bitdecay.jump.BitBody;
+import com.bitdecay.game.objects.components.ControllerComponent;
+import com.bitdecay.game.objects.components.PhysicsComponent;
+import com.bitdecay.game.objects.components.PositionComponent;
 import com.bitdecay.jump.BodyType;
 import com.bitdecay.jump.JumperBody;
 import com.bitdecay.jump.control.PlayerInputController;
-import com.bitdecay.jump.gdx.input.GDXControls;
 import com.bitdecay.jump.geom.BitRectangle;
-import com.bitdecay.jump.properties.BitBodyProperties;
 import com.bitdecay.jump.properties.JumperProperties;
 import com.bitdecay.jump.render.JumperRenderStateWatcher;
 

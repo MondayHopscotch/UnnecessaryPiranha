@@ -1,18 +1,12 @@
-package com.bitdecay.game.objects.component;
+package com.bitdecay.game.objects.components;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.bitdecay.game.objects.GameEntities;
 import com.bitdecay.game.objects.GameEntity;
 import com.bitdecay.jump.BitBody;
 import com.bitdecay.jump.BodyType;
 import com.bitdecay.jump.collision.BitWorld;
 import com.bitdecay.jump.level.Level;
-import com.bitdecay.jump.level.LevelObject;
-import com.bitdecay.jump.leveleditor.example.game.GameObject;
 import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by MondayHopscotch on 7/28/2016.

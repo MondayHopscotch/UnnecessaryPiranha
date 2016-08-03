@@ -1,5 +1,6 @@
-package com.bitdecay.game.objects.component;
+package com.bitdecay.game.objects.components;
 
+import com.bitdecay.game.objects.interfaces.IUpdate;
 import com.bitdecay.jump.BitBody;
 
 /**

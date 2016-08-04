@@ -41,7 +41,7 @@ public class WorldLinkComponentTest {
             body.bodyType = BodyType.STATIC;
             physics = new PhysicsComponent(body, new PositionComponent());
 
-            components.add(physics);
+            addComponent(physics);
         }
     }
 }

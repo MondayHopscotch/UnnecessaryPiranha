@@ -7,7 +7,7 @@ import com.bitdecay.jump.collision.BitWorld;
 /**
  * Created by MondayHopscotch on 7/27/2016.
  */
-public class WorldLinkComponent implements BitComponent {
+public class WorldLinkComponent extends BitComponent {
     BitWorld world;
     GameEntities entities;
 
@@ -18,10 +18,20 @@ public class WorldLinkComponent implements BitComponent {
 
     public void addEntity(GameEntity entity) {
         entities.add(entity);
-        for (BitComponent comp : entity.components) {
-            if (comp instanceof PhysicsComponent){
+        for (BitComponent comp : entity.getComponents()) {
+            if (comp.getClass().isAssignableFrom(PhysicsComponent.class)){
                 PhysicsComponent phys = (PhysicsComponent) comp;
                 world.addBody(phys.body);
+            }
+        }
+    }
+
+    public void removeEntity(GameEntity entity) {
+        entities.remove(entity);
+        for (BitComponent comp : entity.getComponents()) {
+            if (comp.getClass().isAssignableFrom(PhysicsComponent.class)){
+                PhysicsComponent phys = (PhysicsComponent) comp;
+                world.removeBody(phys.body);
             }
         }
     }

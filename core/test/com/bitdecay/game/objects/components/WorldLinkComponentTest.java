@@ -14,7 +14,7 @@ import org.junit.Test;
 public class WorldLinkComponentTest {
 
     @Test
-    public void testBodiesAddedToWorld() {
+    public void testBodiesAddAndRemoveFromWorld() {
         BitWorld world = new BitWorld();
         Level level = new Level(32);
         world.setLevel(level);
@@ -30,6 +30,12 @@ public class WorldLinkComponentTest {
 
         worldLink.world.step(BitWorld.STEP_SIZE * 1.5f);
         assert(worldLink.world.getStaticBodies().contains(obj.body));
+
+        worldLink.removeEntity(obj);
+        assert(worldLink.entities.pendingRemoves.contains(obj));
+
+        worldLink.world.step(BitWorld.STEP_SIZE * 1.5f);
+        assert(!worldLink.world.getStaticBodies().contains(obj.body));
     }
 
     private static class MockGameObject extends GameEntity {

@@ -10,7 +10,7 @@ import java.util.List;
  * Created by MondayHopscotch on 7/24/2016.
  */
 public class GameEntity {
-    public List<BitComponent> components;
+    private List<BitComponent> components;
 
     public GameEntity() {
         components = new ArrayList();
@@ -18,6 +18,7 @@ public class GameEntity {
 
     public void addComponent(BitComponent component) {
         components.add(component);
+        component.parent = this;
     }
 
     public void update(float delta) {
@@ -26,5 +27,9 @@ public class GameEntity {
                 ((IUpdate) comp).update(delta);
             }
         }
+    }
+
+    public List<BitComponent> getComponents() {
+        return components;
     }
 }

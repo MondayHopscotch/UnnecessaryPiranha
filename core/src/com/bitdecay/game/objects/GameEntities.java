@@ -9,9 +9,9 @@ import java.util.List;
  * Created by MondayHopscotch on 7/27/2016.
  */
 public class GameEntities implements IUpdate {
-    List<GameEntity> gameObjects;
+    public List<GameEntity> gameObjects;
     public List<GameEntity> pendingAdds;
-    List<GameEntity> pendingRemoves;
+    public List<GameEntity> pendingRemoves;
 
     public GameEntities() {
         gameObjects = new ArrayList<GameEntity>();
@@ -23,13 +23,23 @@ public class GameEntities implements IUpdate {
         pendingAdds.add(entity);
     }
 
+    public void remove(GameEntity entity) {
+        pendingRemoves.add(entity);
+    }
+
+    private void doAdds() {
+        gameObjects.addAll(pendingAdds);
+        pendingAdds.clear();
+    }
+
+    private void doRemoves() {
+        gameObjects.removeAll(pendingRemoves);
+        pendingRemoves.clear();
+    }
+
     @Override
     public void update(float delta) {
         doAdds();
-    }
-
-    public void doAdds() {
-        gameObjects.addAll(pendingAdds);
-        pendingAdds.clear();
+        doRemoves();
     }
 }

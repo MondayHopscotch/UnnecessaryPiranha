@@ -6,7 +6,7 @@ import com.bitdecay.jump.control.PlayerInputController;
 /**
  * Created by MondayHopscotch on 7/24/2016.
  */
-public class ControllerComponent implements BitComponent {
+public class ControllerComponent extends BitComponent {
     public BitBody body;
     public PlayerInputController bodyController;
 

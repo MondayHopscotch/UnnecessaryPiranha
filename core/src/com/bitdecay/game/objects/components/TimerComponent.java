@@ -7,10 +7,10 @@ import com.bitdecay.game.objects.interfaces.IUpdate;
 /**
  * Created by MondayHopscotch on 7/27/2016.
  */
-public class TimerComponent implements BitComponent, IUpdate, IEvent {
+public class TimerComponent extends BitComponent implements IUpdate, IEvent {
     float timeLeft;
 
-    public TimerComponent (int time) {
+    public TimerComponent (float time) {
         timeLeft = time;
     }
 

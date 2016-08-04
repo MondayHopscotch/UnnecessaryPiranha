@@ -34,4 +34,25 @@ public class GameEntitiesTest {
         assert(!go.pendingAdds.contains(player));
         assert(go.gameObjects.contains(player));
     }
+
+    @Test
+    public void testRemove() {
+        GameEntities entities = new GameEntities();
+
+        PlayerObject player = new PlayerObject(new PlayerInputController(GDXControls.defaultMapping));
+
+        entities.add(player);
+
+        entities.update(1);
+
+        assert(entities.gameObjects.contains(player));
+
+        entities.remove(player);
+
+        assert(entities.pendingRemoves.contains(player));
+
+        entities.update(1);
+
+        assert(!entities.gameObjects.contains(player));
+    }
 }

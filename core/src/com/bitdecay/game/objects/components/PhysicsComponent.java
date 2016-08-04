@@ -6,7 +6,7 @@ import com.bitdecay.jump.BitBody;
 /**
  * Created by MondayHopscotch on 7/24/2016.
  */
-public class PhysicsComponent implements BitComponent, IUpdate {
+public class PhysicsComponent extends BitComponent implements IUpdate {
     public BitBody body;
     PositionComponent position;
 
